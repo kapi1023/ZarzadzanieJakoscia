@@ -1,0 +1,20 @@
+-------------------------------------------------------------------------------
+Test set: biz.BankHistoryTest
+-------------------------------------------------------------------------------
+Tests run: 25, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.037 s <<< FAILURE! -- in biz.BankHistoryTest
+biz.BankHistoryTest.noParameterValidation_nullAccount -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Brak walidacji account=null ==> Unexpected exception type thrown, expected: <java.lang.NullPointerException> but was: <java.lang.RuntimeException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:39)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3153)
+	at biz.BankHistoryTest.noParameterValidation_nullAccount(BankHistoryTest.java:400)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.RuntimeException
+	at biz.BankHistory.logPaymentIn(BankHistory.java:38)
+	at biz.BankHistoryTest.lambda$noParameterValidation_nullAccount$8(BankHistoryTest.java:401)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+

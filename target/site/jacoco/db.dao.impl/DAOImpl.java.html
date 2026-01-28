@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DAOImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestyJednostkowe</a> &gt; <a href="index.source.html" class="el_package">db.dao.impl</a> &gt; <span class="el_source">DAOImpl.java</span></div><h1>DAOImpl.java</h1><pre class="source lang-java linenums">package db.dao.impl;
+
+import db.dao.DAO;
+import model.*;
+import model.operations.Interest;
+import model.operations.LogOperation;
+import model.operations.Payment;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/**
+ * Created by Krzysztof Podlaski on 04.03.2018.
+ */
+<span class="nc" id="L17">public class DAOImpl implements DAO{</span>
+    Connection db;
+
+
+    public User findUserByName(String userName) throws SQLException {
+<span class="nc" id="L22">        String sql = &quot;SELECT &quot; +</span>
+                &quot;user.id as user_id, &quot; +
+                &quot;user.name as user_name, &quot; +
+                &quot;role.id as role_id, &quot; +
+                &quot;role.name as role_name &quot; +
+                &quot;FROM User , Role  &quot; +
+                &quot;WHERE role.id=user.role_id &quot; +
+                &quot;AND user_name = '&quot;+userName+&quot;'&quot;;
+<span class="nc" id="L30">        User user = null;</span>
+<span class="nc" id="L31">        Statement st = null;</span>
+        try{
+<span class="nc" id="L33">            st = db.createStatement();</span>
+<span class="nc" id="L34">            ResultSet rs = st.executeQuery(sql);</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">            if (rs.next()){</span>
+<span class="nc" id="L36">                user = getUserFromRS(rs);</span>
+            }
+<span class="nc" id="L38">            st.close();</span>
+        }
+<span class="nc" id="L40">        catch(SQLException e){</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            if (st!= null) {</span>
+<span class="nc" id="L42">                st.close();</span>
+            }
+<span class="nc" id="L44">            throw e;</span>
+<span class="nc" id="L45">        }</span>
+<span class="nc" id="L46">        return user;</span>
+    }
+
+
+
+
+    public Password findPasswordForUser(User user) throws SQLException {
+<span class="nc" id="L53">        String sql = &quot;SELECT passwd FROM Password  WHERE user_id=&quot;+user.getId();</span>
+<span class="nc" id="L54">        Statement st =null;</span>
+<span class="nc" id="L55">        Password passwd =null;</span>
+        try {
+<span class="nc" id="L57">            st= db.createStatement();</span>
+<span class="nc" id="L58">            ResultSet rs = st.executeQuery(sql);</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">            if (rs.next()) passwd = new Password();</span>
+<span class="nc" id="L60">            passwd.setPasswd(rs.getString(&quot;passwd&quot;));</span>
+<span class="nc" id="L61">            passwd.setUserId(user.getId());</span>
+<span class="nc" id="L62">            st.close();</span>
+        }
+<span class="nc" id="L64">        catch (SQLException e){</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (st!=null) st.close();</span>
+<span class="nc" id="L66">            throw e;</span>
+<span class="nc" id="L67">        }</span>
+
+<span class="nc" id="L69">        return passwd;</span>
+    }
+
+
+    public Account findAccountById(int accountId) throws SQLException {
+<span class="nc" id="L74">        String sql= &quot;SELECT &quot; +</span>
+                &quot;user.id as user_id, &quot; +
+                &quot;user.name as user_name, &quot; +
+                &quot;role.id as role_id, &quot; +
+                &quot;role.name as role_name, &quot; +
+                &quot;account.id as account_id, &quot; +
+                &quot;ammount &quot; +
+                &quot;FROM User , Role, Account &quot; +
+                &quot;WHERE role.id=user.role_id AND &quot; +
+                &quot;owner_id = user.id AND &quot; +
+                &quot;user_id = &quot;+accountId;
+<span class="nc" id="L85">        Statement st = null;</span>
+<span class="nc" id="L86">        Account account = null;</span>
+        try {
+<span class="nc" id="L88">            st = db.createStatement();</span>
+<span class="nc" id="L89">            ResultSet rs = st.executeQuery(sql);</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">            if (rs.next()) account = getAccountFromRs(rs);</span>
+<span class="nc" id="L91">            st.close();</span>
+        }
+<span class="nc" id="L93">        catch(SQLException e){</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (st != null) st.close();</span>
+<span class="nc" id="L95">            throw e;</span>
+<span class="nc" id="L96">        }</span>
+<span class="nc" id="L97">        return account;</span>
+    }
+
+
+    public boolean updateAccountState(Account account) throws SQLException {
+<span class="nc" id="L102">        String sql = &quot;UPDATE ACCOUNT SET ammount = &quot;+account.getAmmount() +</span>
+<span class="nc" id="L103">                &quot; WHERE id=&quot;+account.getId();</span>
+<span class="nc" id="L104">        Statement st = null;</span>
+<span class="nc" id="L105">        int infected_rows =0;</span>
+        try {
+<span class="nc" id="L107">            st = db.createStatement();</span>
+<span class="nc" id="L108">            infected_rows = st.executeUpdate(sql);</span>
+<span class="nc" id="L109">            st.close();</span>
+        }
+<span class="nc" id="L111">        catch(SQLException e){</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (st!=null) st.close();</span>
+<span class="nc" id="L113">            throw e;</span>
+<span class="nc" id="L114">        }</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">        if (infected_rows&gt;=1) return true;</span>
+<span class="nc" id="L116">        return false;</span>
+    }
+
+    public boolean setUserPassword(User user, String passwd, String oldPass) throws SQLException {
+<span class="nc" id="L120">        String sql = &quot;UPDATE PASSWORD SET passwd = '&quot;+passwd +</span>
+<span class="nc" id="L121">                &quot;' WHERE user_id=&quot;+user.getId()+&quot; AND passwd = '&quot;+oldPass+&quot;'&quot; ;</span>
+<span class="nc" id="L122">        Statement st = null;</span>
+<span class="nc" id="L123">        int infected_rows =0;</span>
+        try {
+<span class="nc" id="L125">            st = db.createStatement();</span>
+<span class="nc" id="L126">            infected_rows = st.executeUpdate(sql);</span>
+<span class="nc" id="L127">            st.close();</span>
+        }
+<span class="nc" id="L129">        catch(SQLException e){</span>
+<span class="nc bnc" id="L130" title="All 2 branches missed.">            if (st!=null) st.close();</span>
+<span class="nc" id="L131">            throw e;</span>
+<span class="nc" id="L132">        }</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if (infected_rows&gt;=1) return true;</span>
+<span class="nc" id="L134">        return false;</span>
+    }
+
+    private User getUserFromRS(ResultSet rs) throws SQLException {
+<span class="nc" id="L138">        User user = new User();</span>
+<span class="nc" id="L139">        Role role = new Role();</span>
+<span class="nc" id="L140">        user.setId(rs.getInt(&quot;user_id&quot;));</span>
+<span class="nc" id="L141">        user.setName(rs.getString(&quot;user_name&quot;));</span>
+<span class="nc" id="L142">        role.setId(rs.getInt(&quot;role_id&quot;));</span>
+<span class="nc" id="L143">        role.setName(rs.getString(&quot;role_name&quot;));</span>
+<span class="nc" id="L144">        user.setRole(role);</span>
+<span class="nc" id="L145">        return user;</span>
+    }
+
+    private Account getAccountFromRs(ResultSet rs) throws SQLException {
+<span class="nc" id="L149">        User user = getUserFromRS(rs);</span>
+<span class="nc" id="L150">        Account account = new Account();</span>
+<span class="nc" id="L151">        account.setOwner(user);</span>
+<span class="nc" id="L152">        account.setId(rs.getInt(&quot;account_id&quot;));</span>
+<span class="nc" id="L153">        account.setAmmount(rs.getDouble(&quot;ammount&quot;));</span>
+<span class="nc" id="L154">        return account;</span>
+    }
+
+    public void close() throws SQLException {
+<span class="nc" id="L158">        db.close();</span>
+<span class="nc" id="L159">    }</span>
+
+    public void logOperation(Operation operation, boolean success) throws SQLException {
+<span class="nc" id="L162">        Statement st = db.createStatement();</span>
+<span class="nc" id="L163">        String sqlStart = &quot;INSERT INTO OPERATION &quot;;</span>
+<span class="nc" id="L164">        String sqlFields = &quot;(`type`, `description`, `date`, `user_id` &quot;;</span>
+<span class="nc" id="L165">        String sqlValues = &quot;VALUES ('&quot;+operation.getType()+&quot;',&quot; +</span>
+<span class="nc" id="L166">                &quot;'&quot;+operation.getDescription()+&quot;',&quot; +</span>
+<span class="nc" id="L167">                &quot;'&quot;+operation.getDate()+&quot;',&quot; +</span>
+<span class="nc" id="L168">                operation.getUser().getId();</span>
+<span class="nc bnc" id="L169" title="All 6 branches missed.">        switch(operation.getType()){</span>
+<span class="nc" id="L170">            case INTEREST: buildQueryInterest((Interest) operation,sqlFields,sqlValues);break;</span>
+<span class="nc" id="L171">            case LOG_IN: buildQueryLogOperation((LogOperation) operation,sqlFields,sqlValues);break;</span>
+<span class="nc" id="L172">            case LOG_OUT: buildQueryLogOperation((LogOperation) operation,sqlFields,sqlValues);break;</span>
+<span class="nc" id="L173">            case WITHDRAW: buildQueryPayment((Payment) operation,sqlFields,sqlValues);break;</span>
+<span class="nc" id="L174">            case PAYMENT_IN: buildQueryPayment((Payment) operation,sqlFields,sqlValues);break;</span>
+        }
+<span class="nc" id="L176">        sqlFields+=&quot;) &quot;;</span>
+<span class="nc" id="L177">        sqlValues+=&quot;) &quot;;</span>
+<span class="nc" id="L178">        st.executeUpdate(sqlStart+sqlFields+sqlValues);</span>
+<span class="nc" id="L179">        ResultSet rs = st.getGeneratedKeys();</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">        if (rs.next()) {</span>
+<span class="nc" id="L181">            int generatedkey=rs.getInt(1);</span>
+<span class="nc" id="L182">            Statement st2 = db.createStatement();</span>
+<span class="nc" id="L183">            String sql =&quot;INSERT INTO History (`operation_id`,`succesfull`) &quot; +</span>
+<span class="nc" id="L184">                    &quot;VALUES (&quot;+rs.getInt(1)+&quot;, '&quot;+success+&quot;')&quot;;</span>
+<span class="nc" id="L185">            st2.execute(sql);</span>
+<span class="nc" id="L186">            st2.close();</span>
+        }
+<span class="nc" id="L188">        st.close();</span>
+
+<span class="nc" id="L190">    }</span>
+
+    private void buildQueryPayment(Payment operation, String sqlFields, String sqlValues) {
+<span class="nc" id="L193">        sqlFields+= &quot;, `ammount`,`account_id`) &quot;;</span>
+<span class="nc" id="L194">        sqlValues+= &quot;, &quot;+operation.getAmmount()+&quot;,&quot;+</span>
+<span class="nc" id="L195">                    operation.getAccount().getId()+&quot;)&quot;;</span>
+<span class="nc" id="L196">    }</span>
+
+    private void buildQueryInterest(Interest operation, String sqlFields, String sqlValues) {
+<span class="nc" id="L199">        sqlFields+= &quot;, `ammount`,`account_id`) &quot;;</span>
+<span class="nc" id="L200">        sqlValues+= &quot;, &quot;+operation.getAmmount()+&quot;,&quot;+</span>
+<span class="nc" id="L201">                operation.getAccount().getId()+&quot;)&quot;;</span>
+<span class="nc" id="L202">    }</span>
+
+    private void buildQueryLogOperation(LogOperation operation, String sqlFields, String sqlValues) {
+<span class="nc" id="L205">        sqlFields+= &quot; )&quot;;</span>
+<span class="nc" id="L206">        sqlValues+= &quot; )&quot;;</span>
+<span class="nc" id="L207">    }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,4 +1,4 @@
-target/
+open target/site/jacoco/index.htmlopen target/site/jacoco/index.htmltarget/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/

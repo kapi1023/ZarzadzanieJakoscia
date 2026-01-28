@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Operation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestyJednostkowe</a> &gt; <a href="index.source.html" class="el_package">model</a> &gt; <span class="el_source">Operation.java</span></div><h1>Operation.java</h1><pre class="source lang-java linenums">package model;
+
+import model.operations.OperationType;
+
+import java.util.Date;
+
+/**
+ * Created by Krzysztof Podlaski on 04.03.2018.
+ */
+public abstract class Operation {
+    private int id;
+    private OperationType type;
+    private String description;
+    private User user;
+    private Date date;
+
+<span class="fc" id="L17">    protected Operation(User user, String description, OperationType operationType) {</span>
+<span class="fc" id="L18">        this.user=user;</span>
+<span class="fc" id="L19">        this.description=description;</span>
+<span class="fc" id="L20">        this.date=new Date();</span>
+<span class="fc" id="L21">        this.type=operationType;</span>
+<span class="fc" id="L22">    }</span>
+
+    public OperationType getType() {
+<span class="fc" id="L25">        return type;</span>
+    }
+
+    public String getDescription() {
+<span class="fc" id="L29">        return description;</span>
+    }
+
+    public User getUser() {
+<span class="fc" id="L33">        return user;</span>
+    }
+
+    public Date getDate() {
+<span class="fc" id="L37">        return date;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

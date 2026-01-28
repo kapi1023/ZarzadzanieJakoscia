@@ -1,0 +1,78 @@
+-------------------------------------------------------------------------------
+Test set: biz.AccountManagerTest
+-------------------------------------------------------------------------------
+Tests run: 25, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.872 s <<< FAILURE! -- in biz.AccountManagerTest
+biz.AccountManagerTest.paymentOut_shouldNotReturnTrueWhenOutcomeFails -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Metoda zwraca true mimo że wypłata powinna się nie powieść (outcome==false) ==> expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
+	at biz.AccountManagerTest.paymentOut_shouldNotReturnTrueWhenOutcomeFails(AccountManagerTest.java:405)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+biz.AccountManagerTest.operations_zeroAmount_isError -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Kwota 0 nie powinna przechodzić ==> expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
+	at biz.AccountManagerTest.operations_zeroAmount_isError(AccountManagerTest.java:490)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+biz.AccountManagerTest.internalPayment_notAtomic_isError -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
+	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:231)
+	at biz.AccountManagerTest.internalPayment_notAtomic_isError(AccountManagerTest.java:447)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+biz.AccountManagerTest.internalPayment_loggingStatus_shouldBeIndependent -- Time elapsed: 0.015 s <<< FAILURE!
+Argument(s) are different! Wanted:
+mockHistory.logOperation(
+    <any model.Operation>,
+    false
+);
+-> at biz.BankHistory.logOperation(BankHistory.java:47)
+Actual invocations have different arguments at position [1]:
+mockHistory.logOperation(
+    model.operations.Withdraw@27210a3b,
+    true
+);
+-> at biz.AccountManager.internalPayment(AccountManager.java:67)
+mockHistory.logOperation(
+    model.operations.PaymentIn@3a12f3e7,
+    true
+);
+-> at biz.AccountManager.internalPayment(AccountManager.java:68)
+
+	at biz.BankHistory.logOperation(BankHistory.java:47)
+	at biz.AccountManagerTest.internalPayment_loggingStatus_shouldBeIndependent(AccountManagerTest.java:475)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+biz.AccountManagerTest.buildBank_shouldNotReturnNull_isError -- Time elapsed: 0.054 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: buildBank nie powinno zwracać null ==> expected: not <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
+	at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:312)
+	at biz.AccountManagerTest.buildBank_shouldNotReturnNull_isError(AccountManagerTest.java:499)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

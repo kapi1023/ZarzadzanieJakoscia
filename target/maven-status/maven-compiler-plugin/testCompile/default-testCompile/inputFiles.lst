@@ -1,0 +1,14 @@
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/biz/AccountManagerTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/biz/AuthenticationManagerTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/biz/BankHistoryTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/biz/InterestOperatorTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/exchange/CurrencyExchangeTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/model/AccountTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/model/PasswordTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/model/RoleTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/model/UserTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/model/operations/InterestTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/model/operations/LogInTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/model/operations/LogOutTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/model/operations/PaymentInTest.java
+/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/src/test/java/model/operations/WithdrawTest.java

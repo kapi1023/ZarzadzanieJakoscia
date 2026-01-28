@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccountManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestyJednostkowe</a> &gt; <a href="index.source.html" class="el_package">biz</a> &gt; <span class="el_source">AccountManager.java</span></div><h1>AccountManager.java</h1><pre class="source lang-java linenums">package biz;
+
+import db.dao.DAO;
+import db.dao.impl.DAOImpl;
+import db.dao.impl.SQLiteDB;
+import model.Account;
+import model.Operation;
+import model.User;
+import model.exceptions.OperationIsNotAllowedException;
+import model.exceptions.UserUnnkownOrBadPasswordException;
+import model.operations.PaymentIn;
+import model.operations.Withdraw;
+
+import java.sql.SQLException;
+
+/**
+ * Created by Krzysztof Podlaski on 04.03.2018.
+ */
+<span class="fc" id="L19">public class AccountManager {</span>
+    private DAO dao;
+    BankHistory history;
+    AuthenticationManager auth;
+    InterestOperator interestOperator;
+<span class="fc" id="L24">    User loggedUser=null;</span>
+
+    public boolean paymentIn(User user, double ammount,
+                   String description, int accountId) throws SQLException {
+<span class="fc" id="L28">        Account account = dao.findAccountById(accountId);</span>
+<span class="fc" id="L29">        Operation operation = new PaymentIn(user, ammount,description, account);</span>
+<span class="fc" id="L30">        boolean success = account.income(ammount);</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (success)</span>
+<span class="fc" id="L32">            success = dao.updateAccountState(account);</span>
+<span class="fc" id="L33">        history.logOperation(operation, success);</span>
+<span class="fc" id="L34">        return success;</span>
+    }
+
+    public boolean paymentOut(User user, double ammount, String description, int accountId) throws OperationIsNotAllowedException, SQLException {
+<span class="fc" id="L38">        Account account = dao.findAccountById(accountId);</span>
+<span class="fc" id="L39">        Operation operation = new Withdraw(user, ammount,description, account);</span>
+<span class="fc" id="L40">        boolean success = auth.canInvokeOperation(operation,user );</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (!success){</span>
+<span class="fc" id="L42">            history.logUnauthorizedOperation(operation, success);</span>
+<span class="fc" id="L43">            throw new OperationIsNotAllowedException(&quot;Unauthorized operation&quot;);</span>
+        }
+<span class="fc" id="L45">        success = account.outcome(ammount);</span>
+<span class="fc" id="L46">        success = dao.updateAccountState(account);</span>
+<span class="fc" id="L47">        history.logOperation(operation, success);</span>
+<span class="fc" id="L48">        return success;</span>
+    }
+
+    public boolean internalPayment(User user, double ammount, String description, int sourceAccountId, int destAccountId) throws OperationIsNotAllowedException, SQLException {
+<span class="fc" id="L52">        Account sourceAccount = dao.findAccountById(sourceAccountId);</span>
+<span class="fc" id="L53">        Account destAccount = dao.findAccountById(destAccountId);</span>
+<span class="fc" id="L54">        Operation withdraw = new Withdraw(user, ammount,description, sourceAccount);</span>
+<span class="fc" id="L55">        Operation payment = new PaymentIn(user, ammount,description, destAccount);</span>
+<span class="fc" id="L56">        boolean success = auth.canInvokeOperation(withdraw,user );</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (!success){</span>
+<span class="fc" id="L58">            history.logUnauthorizedOperation(withdraw, success);</span>
+<span class="fc" id="L59">            throw new OperationIsNotAllowedException(&quot;Unauthorized operation&quot;);</span>
+        }
+<span class="fc" id="L61">        success = sourceAccount.outcome(ammount);</span>
+<span class="pc bpc" id="L62" title="1 of 4 branches missed.">        success = success &amp;&amp; destAccount.income(ammount);</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (success) {</span>
+<span class="fc" id="L64">            success = dao.updateAccountState(sourceAccount);</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">            if (success) dao.updateAccountState(destAccount);</span>
+        }
+<span class="fc" id="L67">        history.logOperation(withdraw, success);</span>
+<span class="fc" id="L68">        history.logOperation(payment, success);</span>
+<span class="fc" id="L69">        return success;</span>
+    }
+
+    public static AccountManager buildBank() {
+        try {
+<span class="nc" id="L74">            DAO dao = SQLiteDB.createDAO();</span>
+<span class="nc" id="L75">            BankHistory history = new BankHistory(dao);</span>
+<span class="nc" id="L76">            AuthenticationManager am = new AuthenticationManager(dao, history);</span>
+<span class="nc" id="L77">            AccountManager aManager = new AccountManager();</span>
+<span class="nc" id="L78">            InterestOperator io = new InterestOperator(dao, aManager);</span>
+<span class="nc" id="L79">            aManager.dao = dao;</span>
+<span class="nc" id="L80">            aManager.auth = am;</span>
+<span class="nc" id="L81">            aManager.history = history;</span>
+<span class="nc" id="L82">            aManager.interestOperator = io;</span>
+<span class="nc" id="L83">            return aManager;</span>
+<span class="fc" id="L84">        } catch (SQLException e) {</span>
+<span class="fc" id="L85">            e.printStackTrace();</span>
+<span class="nc" id="L86">        } catch (ClassNotFoundException e) {</span>
+<span class="nc" id="L87">            e.printStackTrace();</span>
+<span class="fc" id="L88">        }</span>
+<span class="fc" id="L89">        return null;</span>
+    }
+
+    public boolean logIn(String userName, char[] password) throws UserUnnkownOrBadPasswordException, SQLException {
+<span class="fc" id="L93">        loggedUser =  auth.logIn(userName, password);</span>
+<span class="pc bpc" id="L94" title="1 of 2 branches missed.">        return loggedUser!=null;</span>
+    }
+
+    public boolean logOut(User user) throws SQLException {
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (auth.logOut(user)) {</span>
+<span class="fc" id="L99">            loggedUser = null;</span>
+<span class="fc" id="L100">            return true;</span>
+        }
+<span class="fc" id="L102">        return false;</span>
+    }
+
+    public User getLoggedUser() {
+<span class="fc" id="L106">        return loggedUser;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

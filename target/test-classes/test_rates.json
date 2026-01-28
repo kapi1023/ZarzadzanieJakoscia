@@ -1,0 +1,15 @@
+[
+  {
+    "from" : "usd",
+    "to" : "pln",
+    "rate" : 3.6,
+    "reverse" : 0.28
+  },
+
+  {
+    "from" : "eur",
+    "to" : "pln",
+    "rate" : 4.12,
+    "reverse" : 0.25
+  }
+]

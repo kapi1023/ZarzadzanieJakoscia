@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthenticationManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestyJednostkowe</a> &gt; <a href="index.source.html" class="el_package">biz</a> &gt; <span class="el_source">AuthenticationManager.java</span></div><h1>AuthenticationManager.java</h1><pre class="source lang-java linenums">package biz;
+
+
+import db.dao.DAO;
+import model.Operation;
+import model.Password;
+import model.User;
+import model.exceptions.UserUnnkownOrBadPasswordException;
+import model.operations.OperationType;
+import model.operations.Withdraw;
+
+import org.apache.commons.codec.binary.Base64;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.Arrays;
+
+/**
+ * Created by Krzysztof Podlaski on 04.03.2018.
+ */
+public class AuthenticationManager {
+    private DAO dao;
+    private BankHistory history;
+
+<span class="fc" id="L27">    public AuthenticationManager(DAO dao, BankHistory bankHistory){</span>
+<span class="fc" id="L28">        this.dao=dao;</span>
+<span class="fc" id="L29">        this.history=bankHistory;</span>
+<span class="fc" id="L30">    }</span>
+
+    public User logIn(String userName, char[] password) throws UserUnnkownOrBadPasswordException, SQLException {
+<span class="fc" id="L33">        User user = dao.findUserByName(userName);</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (user==null) {</span>
+<span class="fc" id="L35">            history.logLoginFailure(null,&quot;Zła nazwa użytkownika &quot;+userName);</span>
+<span class="fc" id="L36">            throw new UserUnnkownOrBadPasswordException(&quot;Bad Password&quot;);</span>
+        }
+<span class="fc" id="L38">        Password paswd = dao.findPasswordForUser(user);</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if (checkPassword(paswd,password)) {</span>
+<span class="fc" id="L40">            history.logLoginSuccess(user);</span>
+<span class="fc" id="L41">            return user;</span>
+        }
+        else {
+<span class="fc" id="L44">            history.logLoginFailure(user,&quot;Bad Password&quot;);</span>
+<span class="fc" id="L45">            throw new UserUnnkownOrBadPasswordException(&quot;Bad Password&quot;);</span>
+        }
+    }
+
+    public boolean logOut(User user) throws SQLException {
+<span class="fc" id="L50">        history.logLogOut(user);</span>
+<span class="fc" id="L51">        return true;</span>
+    }
+
+    private boolean checkPassword(Password passwd, char[] password) {
+<span class="fc" id="L55">        String hashedPassword = hashPassword(password);</span>
+<span class="fc" id="L56">        return passwd.getPasswd().equals(hashedPassword);</span>
+    }
+
+    public static String hashPassword(char[] pass){
+<span class="fc" id="L60">        String result=null;</span>
+<span class="fc" id="L61">        CharBuffer cBuffer = CharBuffer.wrap(pass);</span>
+<span class="fc" id="L62">        byte[] bpass = null;</span>
+        try {
+<span class="fc" id="L64">            MessageDigest digest = MessageDigest.getInstance(&quot;SHA-256&quot;);</span>
+<span class="fc" id="L65">            bpass = Charset.forName(&quot;UTF-8&quot;).encode(cBuffer).array();</span>
+<span class="fc" id="L66">            byte[] encodedhash = digest.digest(bpass);</span>
+<span class="fc" id="L67">            Base64 base64 = new Base64();</span>
+<span class="fc" id="L68">            result = new String(base64.encode(encodedhash));</span>
+            //result = Base64.encode(encodedhash);
+<span class="nc" id="L70">        } catch (NoSuchAlgorithmException e) {</span>
+<span class="nc" id="L71">            e.printStackTrace();</span>
+        }
+        finally{
+<span class="fc" id="L74">            cBuffer.clear();</span>
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">            if (bpass!=null) Arrays.fill(bpass, (byte) 0x0);</span>
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">            if (pass!=null) Arrays.fill(pass, 'a');</span>
+        }
+<span class="fc" id="L78">        return result;</span>
+    }
+
+    public boolean canInvokeOperation(Operation operation, User user) {
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if (user.getRole().getName().equals(&quot;Admin&quot;)) return true;</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (operation.getType() == OperationType.PAYMENT_IN) return true;</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (operation.getType() == OperationType.WITHDRAW) {</span>
+<span class="fc" id="L85">            Withdraw op = (Withdraw) operation;</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">            return user.getId() == op.getUser().getId();</span>
+        }
+<span class="fc" id="L88">        return false;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

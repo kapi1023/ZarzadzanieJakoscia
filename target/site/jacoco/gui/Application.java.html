@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pl"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Application.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestyJednostkowe</a> &gt; <a href="index.source.html" class="el_package">gui</a> &gt; <span class="el_source">Application.java</span></div><h1>Application.java</h1><pre class="source lang-java linenums">package gui;
+
+import biz.AccountManager;
+import model.exceptions.UserUnnkownOrBadPasswordException;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ContainerAdapter;
+import java.sql.SQLException;
+
+/**
+ * Created by Krzysztof Podlaski on 07.03.2018.
+ */
+public class Application {
+    private JPanel mainPanel;
+    private JButton signInButton;
+    private AccountManager accountManager;
+    private JLabel userInfo;
+    private JFrame additionalWindow;
+    LoginForm loginForm;
+<span class="nc" id="L22">    public Application() {</span>
+<span class="nc" id="L23">        accountManager = AccountManager.buildBank();</span>
+
+
+<span class="nc" id="L26">        signInButton.addActionListener(new ActionListener() {</span>
+            public void actionPerformed(ActionEvent e) {
+<span class="nc bnc" id="L28" title="All 2 branches missed.">                if (accountManager.getLoggedUser()==null) {</span>
+<span class="nc" id="L29">                    additionalWindow = new JFrame(&quot;Log in&quot;);</span>
+<span class="nc" id="L30">                    loginForm = new LoginForm(Application.this);</span>
+<span class="nc" id="L31">                    additionalWindow.setContentPane(loginForm.loginPanel);</span>
+<span class="nc" id="L32">                    additionalWindow.setSize(400, 180);</span>
+<span class="nc" id="L33">                    additionalWindow.setLocation(200, 100);</span>
+<span class="nc" id="L34">                    additionalWindow.setVisible(true);</span>
+<span class="nc" id="L35">                    additionalWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);</span>
+                }
+                else{
+                    try {
+<span class="nc" id="L39">                        boolean r = accountManager.logOut(accountManager.getLoggedUser());</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">                        if (r)  {</span>
+<span class="nc" id="L41">                            signInButton.setText(&quot;LogIn&quot;);</span>
+<span class="nc" id="L42">                            userInfo.setText(&quot;Not Logged Yet&quot;);</span>
+                        }
+<span class="nc" id="L44">                    } catch (SQLException e1) {</span>
+<span class="nc" id="L45">                        e1.printStackTrace();</span>
+<span class="nc" id="L46">                    }</span>
+
+
+                }
+<span class="nc" id="L50">            }</span>
+        });
+<span class="nc" id="L52">    }</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L55">        JFrame frame = new JFrame(&quot;Application&quot;);</span>
+<span class="nc" id="L56">        frame.setContentPane(new Application().mainPanel);</span>
+<span class="nc" id="L57">        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L58">        frame.setSize(600,600);</span>
+<span class="nc" id="L59">        frame.setLocation(200,100);</span>
+<span class="nc" id="L60">        frame.setVisible(true);</span>
+<span class="nc" id="L61">    }</span>
+
+    void logInOperation(){
+<span class="nc" id="L64">        String userName = loginForm.userNameTextField.getText();</span>
+<span class="nc" id="L65">        char[] password = loginForm.passwordField.getPassword();</span>
+<span class="nc" id="L66">        boolean success = false;</span>
+        try {
+<span class="nc" id="L68">            success = accountManager.logIn(userName, password);</span>
+
+<span class="nc" id="L70">        } catch (UserUnnkownOrBadPasswordException e1) {</span>
+<span class="nc" id="L71">            e1.printStackTrace();</span>
+            //Show Dialog for user
+<span class="nc" id="L73">        } catch (SQLException e1) {</span>
+<span class="nc" id="L74">            e1.printStackTrace();</span>
+            //Show Dialog for user
+<span class="nc" id="L76">        }</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        if(success){</span>
+<span class="nc" id="L78">            additionalWindow.setVisible(false);</span>
+<span class="nc" id="L79">            additionalWindow.dispose();</span>
+<span class="nc" id="L80">            additionalWindow = null;</span>
+<span class="nc" id="L81">            userInfo.setText(accountManager.getLoggedUser().getName());</span>
+<span class="nc" id="L82">            signInButton.setText(&quot;Logout&quot;);</span>
+        }
+
+<span class="nc" id="L85">    }</span>
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

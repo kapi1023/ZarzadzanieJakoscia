@@ -1,0 +1,14 @@
+model/operations/LogOutTest.class
+model/RoleTest.class
+model/operations/InterestTest.class
+biz/InterestOperatorTest.class
+biz/AuthenticationManagerTest.class
+model/UserTest.class
+biz/BankHistoryTest.class
+model/PasswordTest.class
+exchange/CurrencyExchangeTest.class
+model/operations/LogInTest.class
+model/AccountTest.class
+biz/AccountManagerTest.class
+model/operations/WithdrawTest.class
+model/operations/PaymentInTest.class

@@ -1,0 +1,115 @@
+-------------------------------------------------------------------------------
+Test set: biz.AuthenticationManagerTest
+-------------------------------------------------------------------------------
+Tests run: 25, Failures: 8, Errors: 0, Skipped: 0, Time elapsed: 0.076 s <<< FAILURE! -- in biz.AuthenticationManagerTest
+biz.AuthenticationManagerTest.hashPassword_clearsInputArray_isError -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Metoda nie powinna modyfikować przekazanego hasła bez jasnego kontraktu ==> array contents differ at index [0], expected: <s> but was: <a>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertArrayEquals.failArraysNotEqual(AssertArrayEquals.java:440)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:193)
+	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:47)
+	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1212)
+	at biz.AuthenticationManagerTest.hashPassword_clearsInputArray_isError(AuthenticationManagerTest.java:450)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+biz.AuthenticationManagerTest.logIn_revealsUserExistence_isError -- Time elapsed: 0.002 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Komunikat powinien być identyczny niezależnie od przyczyny ==> expected: <Nieprawidłowe dane logowania> but was: <Bad Password>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
+	at biz.AuthenticationManagerTest.logIn_revealsUserExistence_isError(AuthenticationManagerTest.java:438)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+biz.AuthenticationManagerTest.logIn_nullPassword_isError -- Time elapsed: 0.015 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.NullPointerException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at biz.AuthenticationManagerTest.logIn_nullPassword_isError(AuthenticationManagerTest.java:425)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.NullPointerException: Cannot read the array length because "array" is null
+	at java.base/java.nio.CharBuffer.wrap(CharBuffer.java:465)
+	at biz.AuthenticationManager.hashPassword(AuthenticationManager.java:61)
+	at biz.AuthenticationManager.checkPassword(AuthenticationManager.java:55)
+	at biz.AuthenticationManager.logIn(AuthenticationManager.java:39)
+	at biz.AuthenticationManagerTest.lambda$logIn_nullPassword_isError$6(AuthenticationManagerTest.java:426)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+biz.AuthenticationManagerTest.roleName_caseSensitive_isError -- Time elapsed: 0.023 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Nieprawidłowa nazwa roli powinna powodować błąd konfiguracji ==> Unexpected exception type thrown, expected: <java.lang.IllegalStateException> but was: <java.lang.ClassCastException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:39)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3153)
+	at biz.AuthenticationManagerTest.roleName_caseSensitive_isError(AuthenticationManagerTest.java:407)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.ClassCastException: class model.Operation$MockitoMock$aub3zWxb cannot be cast to class model.operations.Withdraw (model.Operation$MockitoMock$aub3zWxb and model.operations.Withdraw are in unnamed module of loader 'app')
+	at biz.AuthenticationManager.canInvokeOperation(AuthenticationManager.java:85)
+	at biz.AuthenticationManagerTest.lambda$roleName_caseSensitive_isError$4(AuthenticationManagerTest.java:408)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+biz.AuthenticationManagerTest.withdraw_withoutAccountOwnershipValidation_isError -- Time elapsed: 0.015 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: WITHDRAW powinno sprawdzać właściciela konta, a nie tylko user w operacji ==> expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
+	at biz.AuthenticationManagerTest.withdraw_withoutAccountOwnershipValidation_isError(AuthenticationManagerTest.java:374)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+biz.AuthenticationManagerTest.interest_operation_withoutRule_shouldThrow -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Brak reguły dla INTEREST powinien być błędem, a nie cichym false ==> Expected java.lang.IllegalStateException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:39)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3153)
+	at biz.AuthenticationManagerTest.interest_operation_withoutRule_shouldThrow(AuthenticationManagerTest.java:390)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+biz.AuthenticationManagerTest.paymentIn_shouldNotBeAllowedForRegularUser -- Time elapsed: 0.001 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: PAYMENT_IN nie powinno być dozwolone dla zwykłego użytkownika bez dodatkowych warunków ==> expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
+	at biz.AuthenticationManagerTest.paymentIn_shouldNotBeAllowedForRegularUser(AuthenticationManagerTest.java:354)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+biz.AuthenticationManagerTest.logIn_nullUserName_isError -- Time elapsed: 0 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <model.exceptions.UserUnnkownOrBadPasswordException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at biz.AuthenticationManagerTest.logIn_nullUserName_isError(AuthenticationManagerTest.java:415)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: model.exceptions.UserUnnkownOrBadPasswordException: Bad Password
+	at biz.AuthenticationManager.logIn(AuthenticationManager.java:36)
+	at biz.AuthenticationManagerTest.lambda$logIn_nullUserName_isError$5(AuthenticationManagerTest.java:416)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
