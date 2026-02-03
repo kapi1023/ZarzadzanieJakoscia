@@ -21,10 +21,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-/**
- * Testy pokazujące błędy w InterestOperator
- * ⚠️ Te testy WYKRYWAJĄ PROBLEMY w kodzie!
- */
+
 class InterestOperatorTest {
 
     private InterestOperator interestOperator;

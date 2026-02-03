@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: biz.BankHistoryTest
 -------------------------------------------------------------------------------
-Tests run: 25, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.037 s <<< FAILURE! -- in biz.BankHistoryTest
+Tests run: 25, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.039 s <<< FAILURE! -- in biz.BankHistoryTest
 biz.BankHistoryTest.noParameterValidation_nullAccount -- Time elapsed: 0.001 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: Brak walidacji account=null ==> Unexpected exception type thrown, expected: <java.lang.NullPointerException> but was: <java.lang.RuntimeException>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)

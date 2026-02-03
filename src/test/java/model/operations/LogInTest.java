@@ -12,9 +12,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-/**
- * Testy jednostkowe dla klasy LogIn
- */
+
 class LogInTest {
 
     @Mock

@@ -8,9 +8,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Testy jednostkowe dla klasy Account
- */
+
 class AccountTest {
 
     private Account account;

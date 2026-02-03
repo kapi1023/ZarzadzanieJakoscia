@@ -13,9 +13,7 @@ import java.util.Date;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-/**
- * Testy jednostkowe dla klasy Interest
- */
+
 class InterestTest {
 
     @Mock

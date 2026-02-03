@@ -27,10 +27,6 @@ import static org.mockito.Mockito.verify;
 
 import java.sql.SQLException;
 
-/**
- * Testy pokazujące błędy w BankHistory
- * ⚠️ Te testy WYKRYWAJĄ PROBLEMY w kodzie!
- */
 class BankHistoryTest {
 
     private BankHistory bankHistory;

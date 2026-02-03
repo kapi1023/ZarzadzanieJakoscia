@@ -6,9 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Testy jednostkowe dla klasy Password
- */
+
 class PasswordTest {
 
     private Password password;

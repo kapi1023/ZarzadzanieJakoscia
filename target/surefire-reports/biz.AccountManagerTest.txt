@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: biz.AccountManagerTest
 -------------------------------------------------------------------------------
-Tests run: 25, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.872 s <<< FAILURE! -- in biz.AccountManagerTest
-biz.AccountManagerTest.paymentOut_shouldNotReturnTrueWhenOutcomeFails -- Time elapsed: 0.005 s <<< FAILURE!
+Tests run: 25, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.795 s <<< FAILURE! -- in biz.AccountManagerTest
+biz.AccountManagerTest.paymentOut_shouldNotReturnTrueWhenOutcomeFails -- Time elapsed: 0.008 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: Metoda zwraca true mimo że wypłata powinna się nie powieść (outcome==false) ==> expected: <false> but was: <true>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -39,7 +39,7 @@ org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-biz.AccountManagerTest.internalPayment_loggingStatus_shouldBeIndependent -- Time elapsed: 0.015 s <<< FAILURE!
+biz.AccountManagerTest.internalPayment_loggingStatus_shouldBeIndependent -- Time elapsed: 0.016 s <<< FAILURE!
 Argument(s) are different! Wanted:
 mockHistory.logOperation(
     <any model.Operation>,
@@ -64,7 +64,7 @@ mockHistory.logOperation(
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 
-biz.AccountManagerTest.buildBank_shouldNotReturnNull_isError -- Time elapsed: 0.054 s <<< FAILURE!
+biz.AccountManagerTest.buildBank_shouldNotReturnNull_isError -- Time elapsed: 0.052 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: buildBank nie powinno zwracać null ==> expected: not <null>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)

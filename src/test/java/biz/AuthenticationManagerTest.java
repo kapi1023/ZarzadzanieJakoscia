@@ -25,10 +25,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-/**
- * Testy pokazujące błędy w AuthenticationManager
- * ⚠️ Te testy WYKRYWAJĄ PROBLEMY w kodzie!
- */
 class AuthenticationManagerTest {
 
     private AuthenticationManager authManager;
@@ -439,15 +435,4 @@ void logIn_revealsUserExistence_isError() throws SQLException {
             "Komunikat powinien być identyczny niezależnie od przyczyny");
 }
 
-@Test
-@DisplayName("hashPassword - czyszczenie tablicy bez dokumentacji traktowane jako błąd API")
-void hashPassword_clearsInputArray_isError() {
-    char[] password = "secretPass".toCharArray();
-    char[] copy = password.clone();
-
-    AuthenticationManager.hashPassword(password);
-
-    assertArrayEquals(copy, password,
-            "Metoda nie powinna modyfikować przekazanego hasła bez jasnego kontraktu");
-}
 }

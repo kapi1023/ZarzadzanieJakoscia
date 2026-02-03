@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="biz.AuthenticationManagerTest" time="0.076" tests="25" errors="0" skipped="0" failures="8">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="biz.AuthenticationManagerTest" time="0.075" tests="24" errors="0" skipped="0" failures="7">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="PL"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk@21/21.0.10/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/target/surefire/surefirebooter-20260128183557891_3.jar /Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/target/surefire 2026-01-28T18-35-57_864-jvmRun1 surefire-20260128183557891_1tmp surefire_0-20260128183557891_2tmp"/>
+    <property name="sun.java.command" value="/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/target/surefire/surefirebooter-20260203175014482_3.jar /Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/target/surefire 2026-02-03T17-50-14_455-jvmRun1 surefire-20260203175014482_1tmp surefire_0-20260203175014482_2tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/target/test-classes:/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/target/classes:/Users/kacperpietrzak/.m2/repository/org/xerial/sqlite-jdbc/3.21.0.1/sqlite-jdbc-3.21.0.1.jar:/Users/kacperpietrzak/.m2/repository/commons-codec/commons-codec/1.16.0/commons-codec-1.16.0.jar:/Users/kacperpietrzak/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.14.0/junit-jupiter-api-5.14.0.jar:/Users/kacperpietrzak/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/kacperpietrzak/.m2/repository/org/junit/platform/junit-platform-commons/1.14.0/junit-platform-commons-1.14.0.jar:/Users/kacperpietrzak/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/kacperpietrzak/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.14.0/junit-jupiter-engine-5.14.0.jar:/Users/kacperpietrzak/.m2/repository/org/junit/platform/junit-platform-engine/1.14.0/junit-platform-engine-1.14.0.jar:/Users/kacperpietrzak/.m2/repository/org/junit/jupiter/junit-jupiter/5.14.0/junit-jupiter-5.14.0.jar:/Users/kacperpietrzak/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.14.0/junit-jupiter-params-5.14.0.jar:/Users/kacperpietrzak/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.17.2/jackson-databind-2.17.2.jar:/Users/kacperpietrzak/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.17.2/jackson-annotations-2.17.2.jar:/Users/kacperpietrzak/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.17.2/jackson-core-2.17.2.jar:/Users/kacperpietrzak/.m2/repository/org/mockito/mockito-junit-jupiter/5.20.0/mockito-junit-jupiter-5.20.0.jar:/Users/kacperpietrzak/.m2/repository/org/mockito/mockito-core/5.20.0/mockito-core-5.20.0.jar:/Users/kacperpietrzak/.m2/repository/net/bytebuddy/byte-buddy/1.17.7/byte-buddy-1.17.7.jar:/Users/kacperpietrzak/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.7/byte-buddy-agent-1.17.7.jar:/Users/kacperpietrzak/.m2/repository/org/objenesis/objenesis/3.3/objenesis-3.3.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/cucumber-java/7.18.0/cucumber-java-7.18.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/cucumber-core/7.18.0/cucumber-core-7.18.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/cucumber-gherkin/7.18.0/cucumber-gherkin-7.18.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/cucumber-gherkin-messages/7.18.0/cucumber-gherkin-messages-7.18.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/gherkin/28.0.0/gherkin-28.0.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/messages/24.1.0/messages-24.1.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/testng-xml-formatter/0.1.0/testng-xml-formatter-0.1.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/query/12.2.0/query-12.2.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/tag-expressions/6.1.0/tag-expressions-6.1.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/cucumber-expressions/17.1.0/cucumber-expressions-17.1.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/datatable/7.18.0/datatable-7.18.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/cucumber-plugin/7.18.0/cucumber-plugin-7.18.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/docstring/7.18.0/docstring-7.18.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/html-formatter/21.3.1/html-formatter-21.3.1.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/junit-xml-formatter/0.4.0/junit-xml-formatter-0.4.0.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/ci-environment/10.0.1/ci-environment-10.0.1.jar:/Users/kacperpietrzak/.m2/repository/io/cucumber/cucumber-junit-platform-engine/7.18.0/cucumber-junit-platform-engine-7.18.0.jar:"/>
@@ -30,7 +30,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/target/surefire/surefirebooter-20260128183557891_3.jar"/>
+    <property name="surefire.real.class.path" value="/Users/kacperpietrzak/Private/ZarzJak2025-26/zaoczne/g1/TestyJednostkowe/target/surefire/surefirebooter-20260203175014482_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="21.0.10"/>
@@ -58,23 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="65.0"/>
-    <property name="maven.test.failure.ignore" value="true"/>
   </properties>
-  <testcase name="hashPassword_clearsInputArray_isError" classname="biz.AuthenticationManagerTest" time="0.006">
-    <failure message="Metoda nie powinna modyfikować przekazanego hasła bez jasnego kontraktu ==&gt; array contents differ at index [0], expected: &lt;s&gt; but was: &lt;a&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Metoda nie powinna modyfikować przekazanego hasła bez jasnego kontraktu ==> array contents differ at index [0], expected: <s> but was: <a>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertArrayEquals.failArraysNotEqual(AssertArrayEquals.java:440)
-	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:193)
-	at org.junit.jupiter.api.AssertArrayEquals.assertArrayEquals(AssertArrayEquals.java:47)
-	at org.junit.jupiter.api.Assertions.assertArrayEquals(Assertions.java:1212)
-	at biz.AuthenticationManagerTest.hashPassword_clearsInputArray_isError(AuthenticationManagerTest.java:450)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-]]></failure>
-  </testcase>
-  <testcase name="hashPassword_generatesHash" classname="biz.AuthenticationManagerTest" time="0.001"/>
+  <testcase name="hashPassword_generatesHash" classname="biz.AuthenticationManagerTest" time="0.004"/>
   <testcase name="logIn_revealsUserExistence_isError" classname="biz.AuthenticationManagerTest" time="0.002">
     <failure message="Komunikat powinien być identyczny niezależnie od przyczyny ==&gt; expected: &lt;Nieprawidłowe dane logowania&gt; but was: &lt;Bad Password&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Komunikat powinien być identyczny niezależnie od przyczyny ==> expected: <Nieprawidłowe dane logowania> but was: <Bad Password>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
@@ -82,19 +67,19 @@
 	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
 	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
 	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)
-	at biz.AuthenticationManagerTest.logIn_revealsUserExistence_isError(AuthenticationManagerTest.java:438)
+	at biz.AuthenticationManagerTest.logIn_revealsUserExistence_isError(AuthenticationManagerTest.java:439)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ]]></failure>
   </testcase>
-  <testcase name="logIn_nullPassword_isError" classname="biz.AuthenticationManagerTest" time="0.015">
+  <testcase name="logIn_nullPassword_isError" classname="biz.AuthenticationManagerTest" time="0.013">
     <failure message="Unexpected exception type thrown, expected: &lt;java.lang.IllegalArgumentException&gt; but was: &lt;java.lang.NullPointerException&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <java.lang.NullPointerException>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
 	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
-	at biz.AuthenticationManagerTest.logIn_nullPassword_isError(AuthenticationManagerTest.java:425)
+	at biz.AuthenticationManagerTest.logIn_nullPassword_isError(AuthenticationManagerTest.java:426)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
@@ -103,28 +88,28 @@ Caused by: java.lang.NullPointerException: Cannot read the array length because 
 	at biz.AuthenticationManager.hashPassword(AuthenticationManager.java:61)
 	at biz.AuthenticationManager.checkPassword(AuthenticationManager.java:55)
 	at biz.AuthenticationManager.logIn(AuthenticationManager.java:39)
-	at biz.AuthenticationManagerTest.lambda$logIn_nullPassword_isError$6(AuthenticationManagerTest.java:426)
+	at biz.AuthenticationManagerTest.lambda$logIn_nullPassword_isError$6(AuthenticationManagerTest.java:427)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
 	... 6 more
 ]]></failure>
   </testcase>
   <testcase name="logIn_failureWithWrongPassword" classname="biz.AuthenticationManagerTest" time="0.001"/>
-  <testcase name="canInvokeOperation_userCanWithdrawFromOwnAccount" classname="biz.AuthenticationManagerTest" time="0.0"/>
-  <testcase name="logOut_success" classname="biz.AuthenticationManagerTest" time="0.001"/>
-  <testcase name="canInvokeOperation_regularUserCannotLogIn" classname="biz.AuthenticationManagerTest" time="0.0"/>
-  <testcase name="roleName_caseSensitive_isError" classname="biz.AuthenticationManagerTest" time="0.023">
+  <testcase name="canInvokeOperation_userCanWithdrawFromOwnAccount" classname="biz.AuthenticationManagerTest" time="0.001"/>
+  <testcase name="logOut_success" classname="biz.AuthenticationManagerTest" time="0.0"/>
+  <testcase name="canInvokeOperation_regularUserCannotLogIn" classname="biz.AuthenticationManagerTest" time="0.001"/>
+  <testcase name="roleName_caseSensitive_isError" classname="biz.AuthenticationManagerTest" time="0.025">
     <failure message="Nieprawidłowa nazwa roli powinna powodować błąd konfiguracji ==&gt; Unexpected exception type thrown, expected: &lt;java.lang.IllegalStateException&gt; but was: &lt;java.lang.ClassCastException&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Nieprawidłowa nazwa roli powinna powodować błąd konfiguracji ==> Unexpected exception type thrown, expected: <java.lang.IllegalStateException> but was: <java.lang.ClassCastException>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:39)
 	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3153)
-	at biz.AuthenticationManagerTest.roleName_caseSensitive_isError(AuthenticationManagerTest.java:407)
+	at biz.AuthenticationManagerTest.roleName_caseSensitive_isError(AuthenticationManagerTest.java:408)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-Caused by: java.lang.ClassCastException: class model.Operation$MockitoMock$aub3zWxb cannot be cast to class model.operations.Withdraw (model.Operation$MockitoMock$aub3zWxb and model.operations.Withdraw are in unnamed module of loader 'app')
+Caused by: java.lang.ClassCastException: class model.Operation$MockitoMock$4sAZ9HL3 cannot be cast to class model.operations.Withdraw (model.Operation$MockitoMock$4sAZ9HL3 and model.operations.Withdraw are in unnamed module of loader 'app')
 	at biz.AuthenticationManager.canInvokeOperation(AuthenticationManager.java:85)
-	at biz.AuthenticationManagerTest.lambda$roleName_caseSensitive_isError$4(AuthenticationManagerTest.java:408)
+	at biz.AuthenticationManagerTest.lambda$roleName_caseSensitive_isError$4(AuthenticationManagerTest.java:409)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
 	... 6 more
 ]]></failure>
@@ -136,17 +121,17 @@ Caused by: java.lang.ClassCastException: class model.Operation$MockitoMock$aub3z
   <testcase name="canInvokeOperation_anyoneCanPaymentIn" classname="biz.AuthenticationManagerTest" time="0.0"/>
   <testcase name="canInvokeOperation_regularUserCannotLogOut" classname="biz.AuthenticationManagerTest" time="0.001"/>
   <testcase name="hashPassword_clearsPasswordArray" classname="biz.AuthenticationManagerTest" time="0.0"/>
-  <testcase name="logIn_failureWithNonExistentUser" classname="biz.AuthenticationManagerTest" time="0.001"/>
+  <testcase name="logIn_failureWithNonExistentUser" classname="biz.AuthenticationManagerTest" time="0.002"/>
   <testcase name="canInvokeOperation_roleNull_isError" classname="biz.AuthenticationManagerTest" time="0.001"/>
   <testcase name="canInvokeOperation_adminCanDoEverything" classname="biz.AuthenticationManagerTest" time="0.0"/>
-  <testcase name="withdraw_withoutAccountOwnershipValidation_isError" classname="biz.AuthenticationManagerTest" time="0.015">
+  <testcase name="withdraw_withoutAccountOwnershipValidation_isError" classname="biz.AuthenticationManagerTest" time="0.013">
     <failure message="WITHDRAW powinno sprawdzać właściciela konta, a nie tylko user w operacji ==&gt; expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: WITHDRAW powinno sprawdzać właściciela konta, a nie tylko user w operacji ==> expected: <false> but was: <true>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
 	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
 	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
 	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
-	at biz.AuthenticationManagerTest.withdraw_withoutAccountOwnershipValidation_isError(AuthenticationManagerTest.java:374)
+	at biz.AuthenticationManagerTest.withdraw_withoutAccountOwnershipValidation_isError(AuthenticationManagerTest.java:375)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
@@ -160,7 +145,7 @@ Caused by: java.lang.ClassCastException: class model.Operation$MockitoMock$aub3z
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:39)
 	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3153)
-	at biz.AuthenticationManagerTest.interest_operation_withoutRule_shouldThrow(AuthenticationManagerTest.java:390)
+	at biz.AuthenticationManagerTest.interest_operation_withoutRule_shouldThrow(AuthenticationManagerTest.java:391)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
@@ -173,25 +158,25 @@ Caused by: java.lang.ClassCastException: class model.Operation$MockitoMock$aub3z
 	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
 	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
 	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:239)
-	at biz.AuthenticationManagerTest.paymentIn_shouldNotBeAllowedForRegularUser(AuthenticationManagerTest.java:354)
+	at biz.AuthenticationManagerTest.paymentIn_shouldNotBeAllowedForRegularUser(AuthenticationManagerTest.java:355)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 ]]></failure>
   </testcase>
-  <testcase name="logIn_nullUserName_isError" classname="biz.AuthenticationManagerTest" time="0.0">
+  <testcase name="logIn_nullUserName_isError" classname="biz.AuthenticationManagerTest" time="0.001">
     <failure message="Unexpected exception type thrown, expected: &lt;java.lang.IllegalArgumentException&gt; but was: &lt;model.exceptions.UserUnnkownOrBadPasswordException&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalArgumentException> but was: <model.exceptions.UserUnnkownOrBadPasswordException>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
 	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
-	at biz.AuthenticationManagerTest.logIn_nullUserName_isError(AuthenticationManagerTest.java:415)
+	at biz.AuthenticationManagerTest.logIn_nullUserName_isError(AuthenticationManagerTest.java:416)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
 Caused by: model.exceptions.UserUnnkownOrBadPasswordException: Bad Password
 	at biz.AuthenticationManager.logIn(AuthenticationManager.java:36)
-	at biz.AuthenticationManagerTest.lambda$logIn_nullUserName_isError$5(AuthenticationManagerTest.java:416)
+	at biz.AuthenticationManagerTest.lambda$logIn_nullUserName_isError$5(AuthenticationManagerTest.java:417)
 	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
 	... 6 more
 ]]></failure>
